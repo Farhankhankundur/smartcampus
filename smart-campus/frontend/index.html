@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f1a3a">
+  <title>Smart Campus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="booting">
+
+  <!-- ===== Sign in / Create account ===== -->
+  <div id="auth" class="auth">
+    <div class="auth-card">
+      <div class="auth-hero">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M22 9 12 4 2 9l10 5 10-5Z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg>
+        </span>
+        <h1>Smart Campus</h1>
+        <p>Students, faculty, classrooms, the library and bookings, all behind one sign-in.</p>
+      </div>
+      <div class="auth-panel">
+        <div class="tabs" role="tablist">
+          <button type="button" role="tab" data-mode="login" class="active">Sign in</button>
+          <button type="button" role="tab" data-mode="register">Create account</button>
+        </div>
+        <form id="authForm">
+          <label id="nameField" hidden>Full name <input id="aName" type="text" autocomplete="name"></label>
+          <label>Username <input id="aUser" type="text" autocomplete="username" autocapitalize="none" required></label>
+          <label>Password <input id="aPass" type="password" autocomplete="current-password" required></label>
+          <p id="authMsg" class="auth-msg" role="alert"></p>
+          <button type="submit" id="authBtn" class="primary wide">Sign in</button>
+        </form>
+        <p class="demo">Demo accounts: <b>admin</b> / admin123 can manage everything. <b>student</b> / student123 can view, book and borrow.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== The app ===== -->
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M22 9 12 4 2 9l10 5 10-5Z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/></svg>
+        </span>
+        <div><b>Smart Campus</b><small>Management portal</small></div>
+      </div>
+      <nav id="nav" aria-label="Sections"></nav>
+      <div class="userbox">
+        <span class="avatar" id="uAvatar"></span>
+        <div class="who"><b id="uName"></b><small id="uRole"></small></div>
+        <button type="button" id="signOut">Sign out</button>
+      </div>
+    </aside>
+
+    <div class="content">
+      <header class="bar">
+        <div>
+          <h1 id="pageTitle">Dashboard</h1>
+          <p id="pageSub"></p>
+        </div>
+        <div class="today" id="today"></div>
+      </header>
+
+      <main>
+        <section id="dashboard"></section>
+
+        <section id="crud" hidden>
+          <div class="card" id="formCard">
+            <h2 id="formTitle"></h2>
+            <form id="form" class="form-grid"></form>
+          </div>
+          <div class="card">
+            <div class="list-head">
+              <h2 id="title"></h2>
+              <span class="count" id="count"></span>
+              <input type="search" id="search" placeholder="Search records" aria-label="Search records">
+            </div>
+            <div class="table-wrap"><table id="table"></table></div>
+          </div>
+        </section>
+
+        <section id="booking" hidden>
+          <div class="card">
+            <h2>Book a resource</h2>
+            <form id="bkForm" class="form-grid">
+              <label>Resource <select id="bkResource" required></select></label>
+              <label>Booked by <input id="bkUser" type="text" required></label>
+              <label>Date and time <input id="bkSlot" type="datetime-local" required></label>
+              <div class="actions"><button type="submit" class="primary">Book now</button></div>
+            </form>
+          </div>
+          <div class="card">
+            <div class="list-head"><h2>Current bookings</h2></div>
+            <div class="table-wrap"><table id="bkTable"></table></div>
+          </div>
+        </section>
+
+        <section id="loans" hidden>
+          <div class="card">
+            <div class="list-head"><h2 id="loanTitle">Borrowed books</h2><span class="count" id="loanCount"></span></div>
+            <p class="note" style="margin-bottom:.9rem">Fine: ₹2 for every day a book is kept past its due date. To borrow a book, open the Library page.</p>
+            <div class="table-wrap"><table id="loanTable"></table></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
